@@ -1,0 +1,54 @@
+<script>
+    $(function () {
+        var myWindow;
+        $(this).css("cursor", "pointer");
+        ttrelem = $("#ttr")[0];
+        tttelem = $("#ttt")[0];
+
+
+        $(".dutyGrid").mouseover(function (evt) {
+            $that = $(this);
+            var feature = $that.attr("data-index");
+            if(feature == '1'){
+                posx  = parseInt($(this).attr("x"))-50;
+            }
+            else if(feature == '4'){
+                posx  = parseInt($(this).attr("x"))-100;
+            }
+            else{
+                posx  = parseInt($(this).attr("x"))-75;
+            }
+            jq = window.parent.$("#jq2").val();
+            zzks = $(this).attr('id');
+            $(this).css("cursor", "pointer");
+            ShowTooltip(evt, "高新技术企业数量:64家");
+        }).mouseout(function (evt) {
+            HideTooltip();
+            //myWindow.close();
+            $(this).css("cursor", "pointer");
+        });
+    });
+    function ShowTooltip(e, txt) {
+        var posy = e.clientY - 160;
+        var posy = e.pageY-e.clientY+100;
+        tttelem.childNodes.item(0).data = txt;
+        ttrelem.setAttribute("x", posx);
+        ttrelem.setAttribute("y", posy);
+        ttrelem.setAttribute("width", tttelem.getComputedTextLength() +20);
+
+        tttelem.setAttribute("x", posx + 10);
+        tttelem.setAttribute("y", posy+30);
+        //文字背景色
+
+        ttrelem.setAttribute("style", "fill: #000000; stroke: #000000; stroke-width: 0.5px; visibility: visible");
+        //文字
+        tttelem.setAttribute("style", "fill: #ffffff;  visibility: visible");
+
+    }
+
+    function HideTooltip() {
+        ttrelem.setAttribute("style", "visibility: hidden");
+        tttelem.setAttribute("style", "visibility: hidden");
+    }
+
+</script>
